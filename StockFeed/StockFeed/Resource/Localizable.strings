@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  StockFeed
+
+  Created by Deepak Kumar on 14/04/21.
+  
+*/
+
+
+"You are not connected to internet. Please try again." = "You are not connected to internet. Please try again.";
+"Error" = "Error";
+"Please enter all details." = "Please enter all details.";
+"Please enter email in correct format." = "Please enter email in correct format.";
+"Please enter password correctly." = "Please enter password correctly.";
+"Please enter User name." = "Please enter User name.";
+
+//Texts
+"Name" = "Name";
+"Email" = "Email";
+"Password" = "Password";
+"Sign Up" = "Sign Up";
+"Ok" = "Ok";
+"Stocks" = "Stocks";
+
+//Placeholders
+"Enter Name" = "Enter Name";
+"Enter Email" = "Enter Email";
+"Enter Password" = "Enter Password";
