@@ -41,6 +41,7 @@ class HomeListViewModel: ObservableObject {
             self?.items = StockDataStore.parseJsonData(data: data)
         }.store(in: &cancellable)
 
+        //DataManager.shared.removeUser()
     }
 }
 

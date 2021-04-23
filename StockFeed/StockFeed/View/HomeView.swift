@@ -10,14 +10,13 @@ import Combine
 
 
 struct HomeView: View {
-    @ObservedObject var homeListViewModel: HomeListViewModel = HomeListViewModel()
+    @StateObject var homeListViewModel: HomeListViewModel = HomeListViewModel()
     
     var body: some View {
         LoadingView(isShowing: .constant(homeListViewModel.isLoading)) {
             List (homeListViewModel.items) { item in
                 StockCell(stock: StockViewModel(with: item))
             }
-            
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle(Text(stocksTxt))

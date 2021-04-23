@@ -29,7 +29,7 @@ struct ContentView_Previews: PreviewProvider {
 
 
 struct SignupView: View {
-    @ObservedObject var signupViewModel = SignupViewModel()
+    @StateObject var signupViewModel = SignupViewModel()
     
     @State private var showAlert = false
     @State private var moveNext = false
