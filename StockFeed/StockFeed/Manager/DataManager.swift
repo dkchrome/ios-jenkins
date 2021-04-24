@@ -36,6 +36,23 @@ class DataManager: NSObject {
         UserDefaults.standard.set(nil, forKey: "user")
         UserDefaults.standard.synchronize()
     }
+    
+    func saveUserLoggedIn() {
+        UserDefaults.standard.set("1", forKey: "login")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func isUserLoggedIn() -> Bool {
+        if let login = UserDefaults.standard.object(forKey: "login") {
+            return true
+        }
+        return false
+    }
+    
+    func remveUserLoggedIn() {
+        UserDefaults.standard.removeObject(forKey: "login")
+        UserDefaults.standard.synchronize()
+    }
 }
 
 extension UserDefaults {

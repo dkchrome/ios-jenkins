@@ -10,10 +10,8 @@ import Combine
 
 struct ContentView: View {
     var body: some View {
-        if DataManager.shared.getUser() != nil {
-            NavigationView {
-                HomeView()
-            }
+        if DataManager.shared.isUserLoggedIn() == true {
+            HomeView()
         } else {
             SignupView()
         }
@@ -66,9 +64,13 @@ struct SignupView: View {
                 
                 signInButton
                 
+                NavigationLink(destination: LoginView()) {
+                    Text(loginTxt)
+                }
+                
                 Spacer()
             })
-        }
+        }.navigationBarHidden(true)
     }
     
     private func signup() {

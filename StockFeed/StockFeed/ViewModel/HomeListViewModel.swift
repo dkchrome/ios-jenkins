@@ -40,8 +40,10 @@ class HomeListViewModel: ObservableObject {
         } receiveValue: { [weak self] (data) in
             self?.items = StockDataStore.parseJsonData(data: data)
         }.store(in: &cancellable)
-
-        //DataManager.shared.removeUser()
+    }
+    
+    func logout() {
+        DataManager.shared.remveUserLoggedIn()
     }
 }
 

@@ -14,6 +14,7 @@ let enterDetailsMsg = NSLocalizedString("Please enter all details.", comment: ""
 let nameEmptyMsg = NSLocalizedString("Please enter User name.", comment: "")
 let emailInvalidMsg = NSLocalizedString("Please enter email in correct format.", comment: "")
 let passwordInvalidMsg = NSLocalizedString("Please enter password correctly.", comment: "")
+let userNotFoundMsg = NSLocalizedString("User is not registered. Please sign up.", comment: "")
 
 //Texts
 let nameTxt = NSLocalizedString("Name", comment: "")
@@ -22,6 +23,8 @@ let passwordTxt = NSLocalizedString("Password", comment: "")
 let signupTxt = NSLocalizedString("Sign Up", comment: "")
 let okTxt = NSLocalizedString("Ok", comment: "")
 let stocksTxt = NSLocalizedString("Stocks", comment: "")
+let loginTxt = NSLocalizedString("Login", comment: "")
+let logoutTxt = NSLocalizedString("Logout", comment: "")
 
 //Placeholders
 let enterNameTxt = NSLocalizedString("Enter Name", comment: "")

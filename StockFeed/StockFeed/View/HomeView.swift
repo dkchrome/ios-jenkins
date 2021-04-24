@@ -13,12 +13,21 @@ struct HomeView: View {
     @StateObject var homeListViewModel: HomeListViewModel = HomeListViewModel()
     
     var body: some View {
-        LoadingView(isShowing: .constant(homeListViewModel.isLoading)) {
-            List (homeListViewModel.items) { item in
-                StockCell(stock: StockViewModel(with: item))
+        NavigationView {
+            VStack {
+                LoadingView(isShowing: .constant(homeListViewModel.isLoading)) {
+                    List (homeListViewModel.items) { item in
+                        StockCell(stock: StockViewModel(with: item))
+                    }
+                }
+                
+                NavigationLink(destination: LoginView()) {
+                    Text(logoutTxt)
+                }.simultaneousGesture(TapGesture().onEnded{
+                    homeListViewModel.logout()
+                })
             }
-        }
-        .navigationBarBackButtonHidden(true)
+        }.navigationBarHidden(true)
         .navigationBarTitle(Text(stocksTxt))
         .onAppear(perform: {
             homeListViewModel.fetchStocks()

@@ -1,35 +1,26 @@
 //
-//  SignupViewModel.swift
+//  LoginViewModel.swift
 //  StockFeed
 //
-//  Created by Deepak Kumar on 12/04/21.
+//  Created by Deepak Kumar on 24/04/21.
 //
 
 import Foundation
 import UIKit
 import Combine
 
-class SignupViewModel: ObservableObject {
+class LoginViewModel: ObservableObject {
     
-    @Published var name = ""
     @Published var email = ""
     @Published var password = ""
     
-    @Published var usernameMessage = ""
     @Published var emailMessage = ""
     @Published var passwordMessage = ""
     
     @Published var isFormValid = false
+    @Published var isLogIn = false
     
     private var cancellableSet: Set<AnyCancellable> = []
-    
-    private var isNameValidPublisher: AnyPublisher<Bool, Never> {
-        $name.debounce(for: 0.8, scheduler: RunLoop.main)
-            .removeDuplicates()
-            .map { input in
-                return input.count >= 1
-            }.eraseToAnyPublisher()
-    }
     
     private var isEmailValidPublisher: AnyPublisher<Bool, Never> {
         $email.debounce(for: 0.8, scheduler: RunLoop.main)
@@ -48,23 +39,15 @@ class SignupViewModel: ObservableObject {
     }
     
     private var isFormValidPublisher: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest3(isNameValidPublisher, isEmailValidPublisher, isPasswordValidPublisher)
-          .map { userNameIsValid, emailIsValid, passwordValid in
-            return userNameIsValid && emailIsValid && passwordValid
+        Publishers.CombineLatest(isEmailValidPublisher, isPasswordValidPublisher)
+          .map { emailIsValid, passwordValid in
+            return emailIsValid && passwordValid
           }
         .eraseToAnyPublisher()
       }
     
     
     init() {
-        isNameValidPublisher
-          .receive(on: RunLoop.main)
-          .map { valid in
-            valid ? "" : nameEmptyMsg
-          }
-          .assign(to: \.usernameMessage, on: self)
-          .store(in: &cancellableSet)
-        
         isEmailValidPublisher
             .receive(on: RunLoop.main)
             .map { valid in
@@ -88,11 +71,15 @@ class SignupViewModel: ObservableObject {
     }
     
     
-    func signup() {
+    func signin() {
         if isFormValid {
-            let user = User(name: name, email: email, password: password)
-            DataManager.shared.saveUser(user: user)
-            DataManager.shared.saveUserLoggedIn()
+            let user = User(name: "", email: email, password: password)
+            
+            let savedUser = DataManager.shared.getUser()
+            if user.email == savedUser?.email && user.password == savedUser?.password {
+                DataManager.shared.saveUserLoggedIn()
+                isLogIn = true
+            }
         }
     }
 }

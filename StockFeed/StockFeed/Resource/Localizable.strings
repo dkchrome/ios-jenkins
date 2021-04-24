@@ -13,12 +13,15 @@
 "Please enter email in correct format." = "Please enter email in correct format.";
 "Please enter password correctly." = "Please enter password correctly.";
 "Please enter User name." = "Please enter User name.";
+"User is not registered. Please sign up." = "User is not registered. Please sign up.";
 
 //Texts
 "Name" = "Name";
 "Email" = "Email";
 "Password" = "Password";
 "Sign Up" = "Sign Up";
+"Login" = "Login";
+"Logout" = "Logout";
 "Ok" = "Ok";
 "Stocks" = "Stocks";
 
