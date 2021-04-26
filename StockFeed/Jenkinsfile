@@ -1,7 +1,7 @@
 
 node() {
 
-    stage('Checkout/Build/Test') {
+    stage('Checkout') {
 
         // Checkout files.
         checkout([
@@ -14,12 +14,18 @@ node() {
                 url: 'https://github.com/dkchrome/ios-jenkins.git'
             ]]
         ])
+    }
 
         // Build and Test
-        sh 'xcodebuild -project ./StockFeed/StockFeed.xcodeproj -scheme "StockFeed" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 11,OS=14.4" '
+        //sh 'xcodebuild -project ./StockFeed/StockFeed.xcodeproj -scheme "StockFeed" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 11,OS=14.4" '
 
-        
-    }
+        stage 'Build'
+
+            sh 'xcodebuild -project ./StockFeed/StockFeed.xcodeproj -scheme "StockFeed" -configuration "Debug" build -destination "platform=iOS Simulator,name=iPhone 11,OS=14.4" '
+
+    
+        stage 'Test'
+        sh 'xcodebuild -project ./StockFeed/StockFeed.xcodeproj -scheme "StockFeed" -configuration "Debug" test -destination "platform=iOS Simulator,name=iPhone 11,OS=14.4" '
 
     
 }
